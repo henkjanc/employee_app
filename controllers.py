@@ -5,18 +5,20 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect('/employees')
+    return redirect('/employee')
 
 
-@app.route('/employees')
+@app.route('/employee')
 def list():
     employees = Employee.query.all()
 
     return render_template('index.html',employees=employees)
 
 
-@app.route('/employees/<id>')
+@app.route('/employee/<id>')
 def get(id):
     employee = Employee.query.get(id)
+    if employee is None:
+        abort(404)
+    return render_template('detail.html',employee=employee)
 
-    return jsonify(employee.dict())
