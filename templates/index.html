@@ -1,0 +1,14 @@
+<h1>employees</h1>
+<hr>
+<table stlye="border-style:black solid 1px">
+    <tr>
+        <th>Name</th>
+    </tr>
+    {% for employee in employees %}
+    <tr>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.hired_on }}</td>
+        <td>{{ employee.department.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
